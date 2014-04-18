@@ -1,0 +1,41 @@
+var express = require('express');
+var router = express.Router();
+
+// Return the text Hello, World!.                                               
+router.get('/hello', function(req, res){
+    res.send('Hello, World!');
+});
+
+/* index file that links to various examples */
+router.get('/', function(req, res){
+    res.render('index');
+});
+
+/* Example 1 - HTML Form w/o Ajax or Database Interaction */
+router.get('/simpleForm', function(req, res){
+    res.render('simpleform.ejs', {action: '/displayFormData'});
+});
+
+/* Example 1 - Display form data submitted above */
+router.post('/displayFormData', function(req, res) {
+    res.render('displayFormData.ejs', req.body );
+});
+
+/* View a single user */
+router.get('/user', function (req, res) {
+    var query = 'select UserID, Email from user WHERE UserID = ' + req.query.userid;
+    console.log(req.query);
+    connection.query(query,
+        function (err, result) {
+            if(typeof result != 'undefined' && result.length > 0) {
+                //NOTE: We are using the same template here as for the view of all users
+                res.render('displayUserTable', {rs: result});
+            }
+            else {
+                res.send('No users exist.');
+            }
+        }
+    );
+});
+
+module.exports = router;

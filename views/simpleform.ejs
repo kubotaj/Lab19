@@ -1,0 +1,29 @@
+<% include header %>
+<% include menu %>
+
+<div id="content">
+<form method="POST" action="<%= action %>">
+    <table id="login">
+        <tr><td>Name:</td>
+            <!-- name attribute must be provided for non ajax forms -->
+            <td><input type="text" id="name" name="name" /></td>
+        </tr>
+        <tr><td>Street:</td>
+            <td><input type="text" id="street" name="street" /></td>
+        </tr>
+        <tr><td>City:</td>
+            <td><input type="text" id="city" name="city" /></td>
+        </tr>
+        <tr><td>State:</td>
+            <td><input type="text" id="state" name="state" /></td>
+        </tr>
+        <tr><td>Zip:</td>
+            <td><input type="text" id="zip" name="zip" /></td>
+        </tr>
+    </table>
+    <input type="submit">
+</form>
+</div>
+
+<% include resource%>
+<% include footer %>
